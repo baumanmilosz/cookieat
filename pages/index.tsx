@@ -1,10 +1,24 @@
-import { useRef } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import Header from '../components/Header'
 import ProductCard from '../components/ProductCard'
-import getProducts from '../sfcc.js'
+// import getProducts from '../sfcc.js'
+
 
 export default function Gallery({ data }) {
-  let coffeeRef = useRef<HTMLParagraphElement>()
+const [recipes, setRecipes] = useState(null);
+
+
+useEffect(() => {
+    const fetchRecipes = async () => {
+      const res = await fetch('/api/recipes' );
+      const data = await res.json();
+      setRecipes(data);
+    }
+     fetchRecipes()
+  }, [])
+
+
+  let coffeeRef = useRef<HTMLParagraphElement>();
 
   const scrollHandler = (e) => {
     e.preventDefault()
@@ -30,8 +44,8 @@ export default function Gallery({ data }) {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {data &&
-            data.map((product) => (
+          {recipes &&
+              recipes?.map((product) => (
               <ProductCard product={product} key={product.id} />
             ))}
         </div>
@@ -40,12 +54,14 @@ export default function Gallery({ data }) {
   )
 }
 
-export async function getStaticProps() {
-  const searchResults = await getProducts('coffee')
-
-  return {
-    props: {
-      data: searchResults,
-    },
-  }
-}
+// export async function getStaticProps() {
+//
+//     console.log('get')
+//   // const searchResults = await getProducts('coffee')
+//
+//   return {
+//     props: {
+//       data: [],
+//     },
+//   }
+// }
