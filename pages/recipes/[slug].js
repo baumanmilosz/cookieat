@@ -32,15 +32,15 @@ export default function Product({recipe}) {
         />
         <div className="mt-10 flex flex-col sm:mt-0 sm:ml-10">
           <div className="mt-4 flex items-center justify-between text-base font-medium text-gray-900">
-            <h3>{recipe.name}</h3>
-            <p>{recipe.level}</p>
+            <h3>{recipe?.name}</h3>
+            <p>{recipe?.level}</p>
           </div>
           <p className="mt-1 text-sm italic text-gray-500">
-            {recipe.short_desc}
+            {recipe?.short_desc}
           </p>
           <div className="mt-10 mb-5 border-t border-gray-200 pt-10 font-bold">
           </div>
-          <p className="max-w-xl">{recipe.long_desc}</p>
+          <p className="max-w-xl">{recipe?.long_desc}</p>
         </div>
       </div>
     </div>
