@@ -26,7 +26,7 @@ export default function Product({recipe}) {
         <Image
             alt="coffee"
             className="rounded-lg"
-            src={recipe.img}
+            src={recipe?.img}
             width={560}
             height={640}
         />
