@@ -20,7 +20,11 @@ const RecipeSchema = new Schema({
     long_desc: {
         type: String,
         require: true
-    }
+    },
+    img: {
+        type: String,
+        required: true
+    },
 }, )
 
 const Recipe = models.Recipe || model('Recipe', RecipeSchema)

@@ -3,7 +3,6 @@ import {connectToDB} from "../../../utils/database";
 
 export default async function handler (req, res)  {
     try {
-        console.log(req.body)
         await connectToDB();
         const recipes = await Recipe.find()
         res.status(200).json(recipes)
