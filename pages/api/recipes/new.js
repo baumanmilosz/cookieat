@@ -21,9 +21,9 @@ export default async function handler (req, res)  {
                     },
                     level: {
                         isIn: {
-                            options: [
+                            options: [[
                                 Level.EASY, Level.MEDIUM, Level.HARD
-                            ],
+                            ]],
                             errorMessage: "Invalid value for level."
                         }
                     },

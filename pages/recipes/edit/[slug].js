@@ -30,11 +30,11 @@ const formRef = useRef()
 
     const [img, setImg] = useState(null)
     useEffect(() => {
-        if(recipe) {
-            setImg(recipe?.img  || imgPlaceholder)
+        if(recipe?.img) {
+            setImg(recipe?.img)
         }
     }, [recipe])
-    // console.log(recipe)
+
     const router = useRouter()
 
     const hiddenFileInput = useRef(null);
@@ -44,8 +44,7 @@ const formRef = useRef()
 
     const handleChange = event =>  {
         const file = event.target.files[0]
-        setImg(URL.createObjectURL(file))
-
+        setImg(file)
     }
 
 
@@ -173,7 +172,7 @@ const formRef = useRef()
               <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                   <Image
                       alt="product image"
-                      src={img || imgPlaceholder}
+                      src={img ? URL.createObjectURL(img) : imgPlaceholder}
                       fill
                       className={cn(
                           'object-cover duration-700 ease-in-out group-hover:opacity-75	',

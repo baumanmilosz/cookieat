@@ -4,6 +4,12 @@ import {convertToBase64} from "../../utils/convertToBase64";
 import {useRouter} from "next/router";
 import {toast} from "react-toastify";
 import {Level} from "../../enums/Level";
+import Image from "next/image";
+import imgPlaceholder from "../../public/img-placeholder.jpeg";
+
+function cn(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
 
 export default function PageWithJSbasedForm() {
     const router = useRouter()
@@ -136,6 +142,16 @@ export default function PageWithJSbasedForm() {
                           className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                           id="long_desc"/>
                   </div>
+              </div>
+              <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                  <Image
+                      alt="product image"
+                      src={img ? URL.createObjectURL(img) : imgPlaceholder}
+                      fill
+                      className={cn(
+                          'object-cover duration-700 ease-in-out group-hover:opacity-75	'
+                      )}
+                  />
               </div>
               <div className="my-5 w-full flex justify-center rounded-md border border-transparent  text-base font-medium bg-orange-600 text-white text-xs font-bold shadow-sm hover:bg-orange-500 ">
                  <input type="file"
