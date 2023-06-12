@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import imgPlaceholder from '../public/img-placeholder.jpeg'
 
 function cn(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -14,7 +15,7 @@ export default function ProductCard({ product }) {
       <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
         <Image
           alt="product image"
-          src={product.img}
+          src={product.img !== null ? product.img : imgPlaceholder}
           fill
           className={cn(
             'object-cover duration-700 ease-in-out group-hover:opacity-75	',

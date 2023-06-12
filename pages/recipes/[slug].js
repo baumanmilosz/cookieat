@@ -3,12 +3,18 @@ import Image from 'next/image'
 // import {useRouter} from "next/router";
 import {connectToDB} from "../../utils/database";
 import Recipe from "../../models/recipe";
+import {useRouter} from "next/router";
+import imgPlaceholder from "../../public/img-placeholder.jpeg";
+import Link from "next/link";
+import {query} from "express-validator";
+
 
 export default function Product({recipe}) {
   // BELOW CODE IS NECESSARY FOR CLIENT-SIDE FETCHING FROM API DIR
 
   // const [recipe, setRecipe] = useState(null);
-  // const router = useRouter()
+  const router = useRouter()
+  console.log(router)
   // const {slug} = router.query;
   // useEffect(() => {
   //   if(slug) {
@@ -20,13 +26,26 @@ export default function Product({recipe}) {
   //     fetchRecipe()
   //   }
   // }, [slug])
+
+
+  const _handleRemoveRecipe = async () => {
+    const options = {
+
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const res = await fetch(`/api/recipes/${recipe.id}`, options);
+    if (res.ok) router.push('/')
+  }
   return <div className="flex h-screen flex-col justify-between">
     <div className="mx-auto mt-16 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="mx-auto flex flex-col sm:flex-row">
         <Image
             alt="coffee"
             className="rounded-lg"
-            src={recipe?.img}
+            src={recipe?.img !== null ? recipe?.img : imgPlaceholder}
             width={560}
             height={640}
         />
@@ -43,6 +62,10 @@ export default function Product({recipe}) {
           <p className="max-w-xl">{recipe?.long_desc}</p>
         </div>
       </div>
+     <div className="flex">
+       <Link href={`/recipes/edit/${router.query.slug}`} className="mr-5">edit</Link>
+       <button onClick={_handleRemoveRecipe}>delete</button>
+     </div>
     </div>
   </div>
 }
