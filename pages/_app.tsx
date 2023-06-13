@@ -14,7 +14,7 @@ const montserrat = Montserrat({
 export default function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
-        const sseSource = new EventSource("http://localhost:3000/api/events");
+        const sseSource = new EventSource("/api/events");
         sseSource.onmessage = function (event) {
             const data = JSON.parse(event.data)
             if(data?.data) {
