@@ -6,6 +6,7 @@ export default async function handler (req, res)  {
         await connectToDB();
         const recipes = await Recipe.find()
         res.status(200).json(recipes)
+
     } catch (e) {
         new Response('Failed to fetch', {status: 500})
     }

@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from 'react'
 import Header from '../components/Header'
 import ProductCard from '../components/ProductCard'
+import {toast} from "react-toastify";
 // import getProducts from '../sfcc.js'
 
 
@@ -16,7 +17,6 @@ useEffect(() => {
     }
      fetchRecipes()
   }, [])
-
 
   let coffeeRef = useRef<HTMLParagraphElement>();
 
